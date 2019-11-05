@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e17f5ae89b1e4008a142e8871ba62150" Name="Diagram1">
+        <EntityTypeShape EntityType="GABRIELBARGASModel.CLIENTE" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GABRIELBARGASModel.ENDERECO" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GABRIELBARGASModel.HISTORICO_RELACIONAMENTO" Width="2.375" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GABRIELBARGASModel.SEGMENTO" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="GABRIELBARGASModel.FK__CLIENTE__ID_SEGM__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="GABRIELBARGASModel.FK__ENDERECO__ID_CLI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="GABRIELBARGASModel.FK__HISTORICO__ID_CL__3F466844" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GabrielBargas.Clientes.Database.Banco.CLIENTE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_CLIENTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPF_CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEL_PRINCIPAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEL_ALTERNATIVO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLASSIFICACAO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_SEGMENTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_CLIENTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPF_CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEL_PRINCIPAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEL_ALTERNATIVO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLASSIFICACAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_SEGMENTO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

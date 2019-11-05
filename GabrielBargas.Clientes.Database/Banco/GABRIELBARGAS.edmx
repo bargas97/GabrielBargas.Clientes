@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GABRIELBARGASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CPF_CNPJ" Type="char" MaxLength="14" />
+          <Property Name="TEL_PRINCIPAL" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="TEL_ALTERNATIVO" Type="char" MaxLength="11" />
+          <Property Name="CLASSIFICACAO" Type="char" MaxLength="1" />
+          <Property Name="ID_SEGMENTO" Type="int" />
+        </EntityType>
+        <EntityType Name="ENDERECO">
+          <Key>
+            <PropertyRef Name="ID_ENDERECO" />
+          </Key>
+          <Property Name="ID_ENDERECO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ESTADO" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CIDADE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CEP" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="RUA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NUMERO" Type="int" Nullable="false" />
+          <Property Name="COMPLEMENTO" Type="varchar" MaxLength="50" />
+          <Property Name="TIPO_ENDERECO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="int" />
+        </EntityType>
+        <EntityType Name="HISTORICO_RELACIONAMENTO">
+          <Key>
+            <PropertyRef Name="ID_HISTORICO_RELACIONAMENTO" />
+          </Key>
+          <Property Name="ID_HISTORICO_RELACIONAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar(max)" Nullable="false" />
+          <Property Name="DATA_HISTORICO" Type="datetime" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="int" />
+        </EntityType>
+        <EntityType Name="SEGMENTO">
+          <Key>
+            <PropertyRef Name="ID_SEGMENTO" />
+          </Key>
+          <Property Name="ID_SEGMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CLIENTE__ID_SEGM__398D8EEE">
+          <End Role="SEGMENTO" Type="Self.SEGMENTO" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEGMENTO">
+              <PropertyRef Name="ID_SEGMENTO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ID_SEGMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENDERECO__ID_CLI__3C69FB99">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="ENDERECO" Type="Self.ENDERECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="ENDERECO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HISTORICO__ID_CL__3F466844">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="HISTORICO_RELACIONAMENTO" Type="Self.HISTORICO_RELACIONAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="HISTORICO_RELACIONAMENTO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GABRIELBARGASModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENDERECO" EntityType="Self.ENDERECO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORICO_RELACIONAMENTO" EntityType="Self.HISTORICO_RELACIONAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEGMENTO" EntityType="Self.SEGMENTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLIENTE__ID_SEGM__398D8EEE" Association="Self.FK__CLIENTE__ID_SEGM__398D8EEE">
+            <End Role="SEGMENTO" EntitySet="SEGMENTO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENDERECO__ID_CLI__3C69FB99" Association="Self.FK__ENDERECO__ID_CLI__3C69FB99">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="ENDERECO" EntitySet="ENDERECO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HISTORICO__ID_CL__3F466844" Association="Self.FK__HISTORICO__ID_CL__3F466844">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="HISTORICO_RELACIONAMENTO" EntitySet="HISTORICO_RELACIONAMENTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GABRIELBARGASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPF_CNPJ" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="TEL_PRINCIPAL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TEL_ALTERNATIVO" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CLASSIFICACAO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID_SEGMENTO" Type="Int32" />
+          <NavigationProperty Name="SEGMENTO" Relationship="Self.FK__CLIENTE__ID_SEGM__398D8EEE" FromRole="CLIENTE" ToRole="SEGMENTO" />
+          <NavigationProperty Name="ENDERECO" Relationship="Self.FK__ENDERECO__ID_CLI__3C69FB99" FromRole="CLIENTE" ToRole="ENDERECO" />
+          <NavigationProperty Name="HISTORICO_RELACIONAMENTO" Relationship="Self.FK__HISTORICO__ID_CL__3F466844" FromRole="CLIENTE" ToRole="HISTORICO_RELACIONAMENTO" />
+        </EntityType>
+        <EntityType Name="ENDERECO">
+          <Key>
+            <PropertyRef Name="ID_ENDERECO" />
+          </Key>
+          <Property Name="ID_ENDERECO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ESTADO" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CIDADE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CEP" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RUA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO" Type="Int32" Nullable="false" />
+          <Property Name="COMPLEMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_ENDERECO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int32" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__ENDERECO__ID_CLI__3C69FB99" FromRole="ENDERECO" ToRole="CLIENTE" />
+        </EntityType>
+        <EntityType Name="HISTORICO_RELACIONAMENTO">
+          <Key>
+            <PropertyRef Name="ID_HISTORICO_RELACIONAMENTO" />
+          </Key>
+          <Property Name="ID_HISTORICO_RELACIONAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATA_HISTORICO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_CLIENTE" Type="Int32" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__HISTORICO__ID_CL__3F466844" FromRole="HISTORICO_RELACIONAMENTO" ToRole="CLIENTE" />
+        </EntityType>
+        <EntityType Name="SEGMENTO">
+          <Key>
+            <PropertyRef Name="ID_SEGMENTO" />
+          </Key>
+          <Property Name="ID_SEGMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE__ID_SEGM__398D8EEE" FromRole="SEGMENTO" ToRole="CLIENTE" />
+        </EntityType>
+        <Association Name="FK__CLIENTE__ID_SEGM__398D8EEE">
+          <End Role="SEGMENTO" Type="Self.SEGMENTO" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEGMENTO">
+              <PropertyRef Name="ID_SEGMENTO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ID_SEGMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENDERECO__ID_CLI__3C69FB99">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="ENDERECO" Type="Self.ENDERECO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="ENDERECO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HISTORICO__ID_CL__3F466844">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="HISTORICO_RELACIONAMENTO" Type="Self.HISTORICO_RELACIONAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="HISTORICO_RELACIONAMENTO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GABRIELBARGASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="ENDERECO" EntityType="Self.ENDERECO" />
+          <EntitySet Name="HISTORICO_RELACIONAMENTO" EntityType="Self.HISTORICO_RELACIONAMENTO" />
+          <EntitySet Name="SEGMENTO" EntityType="Self.SEGMENTO" />
+          <AssociationSet Name="FK__CLIENTE__ID_SEGM__398D8EEE" Association="Self.FK__CLIENTE__ID_SEGM__398D8EEE">
+            <End Role="SEGMENTO" EntitySet="SEGMENTO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENDERECO__ID_CLI__3C69FB99" Association="Self.FK__ENDERECO__ID_CLI__3C69FB99">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="ENDERECO" EntitySet="ENDERECO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HISTORICO__ID_CL__3F466844" Association="Self.FK__HISTORICO__ID_CL__3F466844">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="HISTORICO_RELACIONAMENTO" EntitySet="HISTORICO_RELACIONAMENTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GABRIELBARGASModelStoreContainer" CdmEntityContainer="GABRIELBARGASEntities">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="GABRIELBARGASModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="CPF_CNPJ" ColumnName="CPF_CNPJ" />
+                <ScalarProperty Name="TEL_PRINCIPAL" ColumnName="TEL_PRINCIPAL" />
+                <ScalarProperty Name="TEL_ALTERNATIVO" ColumnName="TEL_ALTERNATIVO" />
+                <ScalarProperty Name="CLASSIFICACAO" ColumnName="CLASSIFICACAO" />
+                <ScalarProperty Name="ID_SEGMENTO" ColumnName="ID_SEGMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENDERECO">
+            <EntityTypeMapping TypeName="GABRIELBARGASModel.ENDERECO">
+              <MappingFragment StoreEntitySet="ENDERECO">
+                <ScalarProperty Name="ID_ENDERECO" ColumnName="ID_ENDERECO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="RUA" ColumnName="RUA" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="TIPO_ENDERECO" ColumnName="TIPO_ENDERECO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORICO_RELACIONAMENTO">
+            <EntityTypeMapping TypeName="GABRIELBARGASModel.HISTORICO_RELACIONAMENTO">
+              <MappingFragment StoreEntitySet="HISTORICO_RELACIONAMENTO">
+                <ScalarProperty Name="ID_HISTORICO_RELACIONAMENTO" ColumnName="ID_HISTORICO_RELACIONAMENTO" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+                <ScalarProperty Name="DATA_HISTORICO" ColumnName="DATA_HISTORICO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEGMENTO">
+            <EntityTypeMapping TypeName="GABRIELBARGASModel.SEGMENTO">
+              <MappingFragment StoreEntitySet="SEGMENTO">
+                <ScalarProperty Name="ID_SEGMENTO" ColumnName="ID_SEGMENTO" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

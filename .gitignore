@@ -3,3 +3,12 @@
 ################################################################################
 
 /GabrielBargas.Clientes.Database/obj/Debug
+/GabrielBargas.Clientes.Database/bin/Debug
+/GabrielBargas.Clientes.InversaoControle/bin/Debug
+/GabrielBargas.Clientes.InversaoControle/obj/Debug
+/GabrielBargas.Clientes.Mvc/obj/Debug
+/GabrielBargas.Clientes.Mvc/bin
+/GabrielBargas.Clientes.ServiceApplication/bin/Debug
+/GabrielBargas.Clientes.ServiceApplication/obj/Debug
+/packages
+/.vs/GabrielBargas.Clientes
