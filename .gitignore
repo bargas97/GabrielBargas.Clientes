@@ -12,3 +12,5 @@
 /GabrielBargas.Clientes.ServiceApplication/obj/Debug
 /packages
 /.vs/GabrielBargas.Clientes
+/GabrielBargas.Clientes.Business/bin/Debug
+/GabrielBargas.Clientes.Business/obj/Debug

@@ -29,7 +29,7 @@ namespace GabrielBargas.Clientes.Database.Data
 
         #region Metodos Publicos
 
-        public async Task<IEnumerable<HISTORICO_RELACIONAMENTO>> ListarHistoricoRelacionamentosCliente(int idCliente)
+        public List<HISTORICO_RELACIONAMENTO> ListarHistoricoRelacionamentosCliente(int idCliente)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace GabrielBargas.Clientes.Database.Data
                 {
                     string sql = "SELECT * FROM HISTORICO_RELACIONAMENTO WHERE ID_CLIENTE = @idCliente";
 
-                    var histRelacionamento = await con.QueryAsync<HISTORICO_RELACIONAMENTO>(sql,new { idCliente});
+                    var histRelacionamento = con.QueryAsync<HISTORICO_RELACIONAMENTO>(sql,new { idCliente}).Result.ToList();
 
                     return histRelacionamento;
                 }

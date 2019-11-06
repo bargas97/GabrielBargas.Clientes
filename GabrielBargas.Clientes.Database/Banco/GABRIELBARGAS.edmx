@@ -16,6 +16,7 @@
           <Property Name="TEL_ALTERNATIVO" Type="char" MaxLength="11" />
           <Property Name="CLASSIFICACAO" Type="char" MaxLength="1" />
           <Property Name="ID_SEGMENTO" Type="int" />
+          <Property Name="FLAG_INATIVO" Type="bit" />
         </EntityType>
         <EntityType Name="ENDERECO">
           <Key>
@@ -119,6 +120,7 @@
           <NavigationProperty Name="SEGMENTO" Relationship="Self.FK__CLIENTE__ID_SEGM__398D8EEE" FromRole="CLIENTE" ToRole="SEGMENTO" />
           <NavigationProperty Name="ENDERECO" Relationship="Self.FK__ENDERECO__ID_CLI__3C69FB99" FromRole="CLIENTE" ToRole="ENDERECO" />
           <NavigationProperty Name="HISTORICO_RELACIONAMENTO" Relationship="Self.FK__HISTORICO__ID_CL__3F466844" FromRole="CLIENTE" ToRole="HISTORICO_RELACIONAMENTO" />
+          <Property Name="FLAG_INATIVO" Type="Boolean" />
         </EntityType>
         <EntityType Name="ENDERECO">
           <Key>
@@ -216,6 +218,7 @@
           <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="GABRIELBARGASModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="FLAG_INATIVO" ColumnName="FLAG_INATIVO" />
                 <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />
                 <ScalarProperty Name="CPF_CNPJ" ColumnName="CPF_CNPJ" />

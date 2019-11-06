@@ -85,10 +85,6 @@
       <Project>{31882944-2761-4cc3-8dea-040cec77e92a}</Project>
       <Name>GabrielBargas.Clientes.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GabrielBargas.Clientes.ServiceApplication\GabrielBargas.Clientes.ServiceApplication.csproj">
-      <Project>{62d3cea0-0cc0-4089-abbb-c9a8e669fba8}</Project>
-      <Name>GabrielBargas.Clientes.ServiceApplication</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

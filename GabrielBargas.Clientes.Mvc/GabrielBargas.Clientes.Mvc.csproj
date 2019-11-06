@@ -127,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\HistoricoRelacionamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SegmentoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +158,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Views\Cliente\Metodos.js" />
+    <Content Include="Scripts\Views\Endereco\BuscaCep.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -175,6 +179,10 @@
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Endereco\Create.cshtml" />
+    <Content Include="Views\Endereco\Edit.cshtml" />
+    <Content Include="Views\HistoricoRelacionamento\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -194,6 +202,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GabrielBargas.Clientes.Business\GabrielBargas.Clientes.Business.csproj">
+      <Project>{1f5a751d-abae-4c5e-9757-74a47a80a9bb}</Project>
+      <Name>GabrielBargas.Clientes.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GabrielBargas.Clientes.Database\GabrielBargas.Clientes.Database.csproj">
       <Project>{31882944-2761-4cc3-8dea-040cec77e92a}</Project>
       <Name>GabrielBargas.Clientes.Database</Name>

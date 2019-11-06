@@ -1,0 +1,150 @@
+﻿@model GabrielBargas.Clientes.Database.Banco.CLIENTE
+@using GabrielBargas.Clientes.Database.Banco
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@Html.HiddenFor(model => model.ID_CLIENTE)
+<div>
+    <h4>CLIENTE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            Nome
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOME)
+        </dd>
+
+        <dt>
+            CPF/CNPJ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF_CNPJ)
+        </dd>
+
+        <dt>
+            Telefone Principal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL_PRINCIPAL)
+        </dd>
+
+        @if (Model.TEL_ALTERNATIVO != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.TEL_ALTERNATIVO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TEL_ALTERNATIVO)
+            </dd>
+        }
+
+        <dt>
+            Classificação
+        </dt>
+        @if (Convert.ToChar(Model.CLASSIFICACAO) == 'O')
+        {
+            <dd>
+                Ouro
+            </dd>
+        }
+        @if (Convert.ToChar(Model.CLASSIFICACAO) == 'P')
+        {
+            <dd>
+                Prata
+            </dd>
+        }
+        @if (Convert.ToChar(Model.CLASSIFICACAO) == 'B')
+        {
+            <dd>
+                Bronze
+            </dd>
+        }
+        <dt>
+            Segmento
+        </dt>
+
+        <dd>
+            @ViewBag.SegmentoDescricao
+        </dd>
+
+    </dl>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Endereços</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rua</th>
+                        <th>Numero</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>Tipo de endereço</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in ViewBag.Endereco as List<ENDERECO>)
+                    {
+                        <tr>
+                            <td> @e.RUA</td>
+                            <td> @e.NUMERO</td>
+                            <td> @e.CIDADE</td>
+                            <td> @e.ESTADO</td>
+                            @if (Convert.ToChar(e.TIPO_ENDERECO) == 'A')
+                            {
+                                <td>Alternativo</td>
+                            }
+                            @if (Convert.ToChar(e.TIPO_ENDERECO) == 'P')
+                            {
+                                <td>Principal</td>
+                            }
+
+                            <td class="col-md-3">@Html.ActionLink("Editar", "Edit", "Endereco", new { id = e.ID_ENDERECO }, null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Cadastrar Endereco", "Create", "Endereco", new { idCliente = Model.ID_CLIENTE }, null)
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Historico de relacionamento</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descricao</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in ViewBag.HistoricoRelacionamento as List<HISTORICO_RELACIONAMENTO>)
+                    {
+                        <tr>
+                            <td> @e.DATA_HISTORICO</td>
+                            <td> @e.DESCRICAO</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Cadastrar Historico", "Create", "HistoricoRelacionamento", new { idCliente = Model.ID_CLIENTE }, null)
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_CLIENTE }) |
+    @Html.ActionLink("Lista de Clientes", "Index")
+</p>

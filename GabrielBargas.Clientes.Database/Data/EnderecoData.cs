@@ -29,7 +29,7 @@ namespace GabrielBargas.Clientes.Database.Data
 
         #region Metodos Publicos
         
-        public async Task<IEnumerable<ENDERECO>> ListarEnderecosCliente(int idCliente)
+        public List<ENDERECO> ListarEnderecosCliente(int idCliente)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace GabrielBargas.Clientes.Database.Data
                 {
                     string sql = "SELECT * FROM ENDERECO WHERE ID_CLIENTE = @idCliente;";
 
-                    var enderecos = await con.QueryAsync<ENDERECO>(sql,new { idCliente});
+                    var enderecos = con.QueryAsync<ENDERECO>(sql,new { idCliente}).Result.ToList();
 
                     return enderecos;
                 }
@@ -74,8 +74,44 @@ namespace GabrielBargas.Clientes.Database.Data
                 throw new Exception(ex.Message);
             }
         }
+        
+        public async Task AlterarEndereco(ENDERECO endereco)
+        {
+            try
+            {
+                using (var con = new SqlConnection(this.conexao.ConexaoBD()))
+                {
+                    string sql =
+                        "UPDATE ENDERECO " +
+                            "SET " +
+                                "ESTADO = @estado, " +
+                                "CIDADE = @cidade, " +
+                                "CEP = @cep, " +
+                                "RUA = @rua, " +
+                                "NUMERO = @numero, " +
+                                "COMPLEMENTO =@complemento, " +
+                                "TIPO_ENDERECO =@tipoEndereco " +
+                                "WHERE ID_ENDERECO = @idEndereco;";
 
-        public async Task<ENDERECO> BuscarEndereco(int id)
+                    await con.ExecuteAsync(sql, new
+                    {
+                        estado = endereco.ESTADO,
+                        cidade = endereco.CIDADE,
+                        cep = endereco.CEP,
+                        rua = endereco.RUA,
+                        numero = endereco.NUMERO,
+                        complemento = endereco.COMPLEMENTO,
+                        tipoEndereco = endereco.TIPO_ENDERECO,
+                        idEndereco = endereco.ID_ENDERECO
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public ENDERECO BuscarEndereco(int id)
         {
             try
             {
@@ -83,7 +119,7 @@ namespace GabrielBargas.Clientes.Database.Data
                 {
                     var sql = "SELECT * FROM ENDERECO WHERE ID_ENDERECO =@id ";
 
-                    var endereco = await con.QueryFirstAsync<ENDERECO>(sql, new { id });
+                    var endereco = con.QueryFirstAsync<ENDERECO>(sql, new { id }).Result;
 
                     return endereco;
                 }

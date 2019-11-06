@@ -13,6 +13,8 @@ namespace GabrielBargas.Clientes.Database.Interfaces
 
         Task CadastrarCliente(CLIENTE cliente);
 
+        Task AtualizarCliente(CLIENTE cliente,bool FlagInativo);
+
         CLIENTE BuscarCliente(int id);
     }
 }

@@ -116,6 +116,8 @@
       <DependentUpon>GABRIELBARGAS.edmx</DependentUpon>
       <LastGenOutput>GABRIELBARGAS.cs</LastGenOutput>
     </Content>
+    <None Include="Scripts\DML\Insercoes.sql" />
+    <None Include="Scripts\DDL\Script Banco.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

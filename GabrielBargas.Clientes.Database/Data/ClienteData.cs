@@ -35,7 +35,7 @@ namespace GabrielBargas.Clientes.Database.Data
             {
                 using (var con = new SqlConnection(conexao.ConexaoBD()))
                 {
-                    string sql = "SELECT * FROM CLIENTE;";
+                    string sql = "SELECT * FROM CLIENTE WHERE FLAG_INATIVO IS NULL or FLAG_INATIVO =0;";
                     var clientes = con.QueryAsync<CLIENTE>(sql).Result.ToList();
 
                     return clientes ;
@@ -55,7 +55,8 @@ namespace GabrielBargas.Clientes.Database.Data
                 {
                     string sql = "INSERT INTO CLIENTE(NOME,CPF_CNPJ,TEL_PRINCIPAL,TEL_ALTERNATIVO,CLASSIFICACAO,ID_SEGMENTO) " +
                         "VALUES(@nomeCliente,@cpfCnpj,@telPrincipal,@telAlternativo,@classificacao,@segmento)";
-                    var tabAfetada = await con.ExecuteAsync(sql, new
+
+                    await con.ExecuteAsync(sql, new
                     {
                         nomeCliente = cliente.NOME,
                         cpfCnpj = cliente.CPF_CNPJ,
@@ -63,6 +64,42 @@ namespace GabrielBargas.Clientes.Database.Data
                         telAlternativo = cliente.TEL_ALTERNATIVO,
                         classificacao = cliente.CLASSIFICACAO,
                         segmento = cliente.ID_SEGMENTO
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task AtualizarCliente(CLIENTE cliente,bool FlagInativo)
+        {
+            try
+            {
+                using (var con = new SqlConnection(this.conexao.ConexaoBD()))
+                {
+                    string sql =
+                        "UPDATE CLIENTE "+
+                            "SET "+
+                                "NOME = @nomeCliente, " +
+                                "CPF_CNPJ = @cpfCnpj, " +
+                                "TEL_PRINCIPAL = @telPrincipal, " +
+                                "TEL_ALTERNATIVO = @telAlternativo, " +
+                                "CLASSIFICACAO = @classificacao, " +
+                                "ID_SEGMENTO =@segmento, " +
+                                "FLAG_INATIVO =@flagInativo " +
+                                "WHERE ID_CLIENTE = @idCliente;";
+
+                    await con.ExecuteAsync(sql, new
+                    {
+                        idCliente = cliente.ID_CLIENTE,
+                        nomeCliente = cliente.NOME,
+                        cpfCnpj = cliente.CPF_CNPJ,
+                        telPrincipal = cliente.TEL_PRINCIPAL,
+                        telAlternativo = cliente.TEL_ALTERNATIVO,
+                        classificacao = cliente.CLASSIFICACAO,
+                        segmento = cliente.ID_SEGMENTO,
+                        flagInativo = FlagInativo
                     });
                 }
             }
@@ -90,7 +127,7 @@ namespace GabrielBargas.Clientes.Database.Data
                 throw new Exception(ex.Message);
             }
         }
-
+        
         #endregion
     }
 }

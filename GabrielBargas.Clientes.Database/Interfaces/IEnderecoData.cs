@@ -9,10 +9,12 @@ namespace GabrielBargas.Clientes.Database.Interfaces
 {
     public interface IEnderecoData
     {
-        Task<IEnumerable<ENDERECO>> ListarEnderecosCliente(int idCliente);
+        List<ENDERECO> ListarEnderecosCliente(int idCliente);
 
         Task CadastrarEndereco(ENDERECO endereco);
 
-        Task<ENDERECO> BuscarEndereco(int id);
+        Task AlterarEndereco(ENDERECO endereco);
+
+        ENDERECO BuscarEndereco(int id);
     }
 }

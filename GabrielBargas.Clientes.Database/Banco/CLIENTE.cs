@@ -28,6 +28,7 @@ namespace GabrielBargas.Clientes.Database.Banco
         public string TEL_ALTERNATIVO { get; set; }
         public string CLASSIFICACAO { get; set; }
         public Nullable<int> ID_SEGMENTO { get; set; }
+        public Nullable<bool> FLAG_INATIVO { get; set; }
     
         public virtual SEGMENTO SEGMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

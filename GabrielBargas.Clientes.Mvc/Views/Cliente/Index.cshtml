@@ -12,58 +12,62 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ID_CLIENTE)
+            id do Cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NOME)
+            Nome
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CPF_CNPJ)
+            CPF/CNPJ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TEL_PRINCIPAL)
+            Telefone principal
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TEL_ALTERNATIVO)
+            Telefone Alternativo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CLASSIFICACAO)
+            Classificação
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ID_SEGMENTO)
+            Segmento
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_CLIENTE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPF_CNPJ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TEL_PRINCIPAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TEL_ALTERNATIVO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLASSIFICACAO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_SEGMENTO)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_CLIENTE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF_CNPJ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TEL_PRINCIPAL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TEL_ALTERNATIVO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLASSIFICACAO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_SEGMENTO)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_CLIENTE }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID_CLIENTE }) |
+            </td>
+        </tr>
+    }
 
 </table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Views/Cliente/Metodos.js")
+}
